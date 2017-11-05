@@ -19,7 +19,4 @@ resources :users do
   end
 resources :microposts,          only: [:create, :destroy]
 resources :relationships,       only: [:create, :destroy]
-resources :microposts do
-  resources :comments
-end
 end
