@@ -1,9 +1,18 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container">
-    <%= link_to "sample app", root_path, id: "logo" %>
-    <nav>
-      <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home", root_path %></li>
+<header>
+  <div class="container header inner">
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">My Blog</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right masthead-nav">
+            <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "Help", help_path %></li>
         <% if logged_in? %>
           <li><%= link_to "Users", users_path %></li>
@@ -23,7 +32,10 @@
         <% else %>
           <li><%= link_to "Log in", login_path %></li>
         <% end %>
-      </ul>
-    </nav>
+          </ul>
+        </div>
+      </div>
+      </nav>
   </div>
 </header>
+
