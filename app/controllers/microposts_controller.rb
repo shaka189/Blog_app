@@ -1,6 +1,9 @@
 class MicropostsController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy]
   before_action :correct_user,   only: :destroy
+  def index
+    @micropost = Micropost.paginate(page: params[:page])
+  end
   def create
     @micropost = current_user.microposts.build(micropost_params)
     if @micropost.save
@@ -18,6 +21,9 @@ class MicropostsController < ApplicationController
     redirect_to request.referrer || root_url
   end
 
+  def show
+    @micropost = Micropost.find(params[:id])
+  end
   private
 
     def micropost_params

@@ -1,0 +1,5 @@
+<% @micropost.comments.each do |comments|%>
+    <%= comments.content %>
+    <%= link_to "delete",'#' %>
+    <br/>
+<%end%>
