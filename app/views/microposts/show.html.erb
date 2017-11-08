@@ -1,8 +1,10 @@
 <br/>
+<div class="col-md-6 col-md-offset-3">
 <p id="@micropost-<%= @micropost.id %>">
   <%= link_to gravatar_for(@micropost.user, size: 50), @micropost.user %>
   <span class="user"><%= link_to @micropost.user.name, @micropost.user %></span>
   <br/>
+  
   <span class="content">
     <%= @micropost.content %>
     <%= image_tag @micropost.picture.url if @micropost.picture? %>
@@ -15,16 +17,24 @@
                                        data: { confirm: "You sure?" } %>
     <% end %>
   </span>
+    <%= form_for ([@micropost, @micropost.upvotes.build]) do |f| %>
+  <%= f.hidden_field :user, value: current_user %>
+  <%= f.submit 'like', class: 'upvote-submit' %>
+  <br/>
+  <h3>Comment
+  </h3>
+  <%= render 'comment/comment' %>
+  </div>
 </p>
-<%= render 'comment/comment' %>
+
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_for ([@micropost, @micropost.comments.build]) do |f| %>
-      <%= f.label :content %>
+      <%= f.label :Create_Comment %>
       <%= f.text_area :content, class: 'form-control' %>
-
-      <%= f.submit "micropost", class: "btn btn-primary" %>
+      <%= f.submit "Post", class: "btn btn-primary" %>
     <% end %>
 
+<% end %>
   </div>
 </div>

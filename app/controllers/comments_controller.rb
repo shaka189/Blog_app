@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy]
   before_action :correct_user,   only: :destroy
   def create
+    if logged_in?
     @micropost = Micropost.find params[:micropost_id]
     @comment = Comment.new(comment_params)
     @comment.micropost = @micropost
@@ -14,7 +15,12 @@ class CommentsController < ApplicationController
       render 'microposts/show'
     end
   end
-
+end
+def destroy
+    @comment.destroy
+    flash[:success] = "Comment deleted"
+    redirect_to root_url
+  end
 
   private
 
