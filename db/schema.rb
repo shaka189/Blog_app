@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171107144342) do
+ActiveRecord::Schema.define(version: 20171108061126) do
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
@@ -44,13 +44,12 @@ ActiveRecord::Schema.define(version: 20171107144342) do
   end
 
   create_table "upvotes", force: :cascade do |t|
-    t.integer "voter_id"
-    t.integer "post_id"
+    t.integer "micropost_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_upvotes_on_post_id"
-    t.index ["voter_id", "post_id"], name: "index_upvotes_on_voter_id_and_post_id", unique: true
-    t.index ["voter_id"], name: "index_upvotes_on_voter_id"
+    t.index ["micropost_id"], name: "index_upvotes_on_micropost_id"
+    t.index ["user_id"], name: "index_upvotes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

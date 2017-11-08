@@ -16,6 +16,11 @@ class CommentsController < ApplicationController
     end
   end
 end
+def destroy
+    @comment.destroy
+    flash[:success] = "Comment deleted"
+    redirect_to root_url
+  end
 
   private
 

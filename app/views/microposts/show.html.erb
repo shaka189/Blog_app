@@ -17,6 +17,9 @@
                                        data: { confirm: "You sure?" } %>
     <% end %>
   </span>
+    <%= form_for ([@micropost, @micropost.upvotes.build]) do |f| %>
+  <%= f.hidden_field :user, value: current_user %>
+  <%= f.submit 'like', class: 'upvote-submit' %>
   <br/>
   <h3>Comment
   </h3>
@@ -32,6 +35,6 @@
       <%= f.submit "Post", class: "btn btn-primary" %>
     <% end %>
 
-
+<% end %>
   </div>
 </div>

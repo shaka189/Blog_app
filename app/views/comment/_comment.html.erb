@@ -1,6 +1,14 @@
-
+<div class="col-md-8">
 <% @micropost.comments.each do |comments|%>
+<div class="microposts">
+    <%= link_to gravatar_for(comments.user, size: 30), comments.user %>
+    <%= (comments.user.name) %> 
+    <br/>
     <%= comments.content %>
     <%= link_to "delete",'#' %>
     <br/>
+    Comment at<%= (comments.created_at) %> 
+    </div>
+    <br/>
 <%end%>
+</div>
