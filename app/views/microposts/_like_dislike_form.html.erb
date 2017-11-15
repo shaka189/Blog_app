@@ -1,0 +1,20 @@
+<% if logged_in? %>
+    <% if @micropost.likes.find_by(user_id: current_user.id).nil? %>
+        <%= render "likes/like" %>
+    <% else %>
+        <%= render "likes/unlike" %>
+    <% end %>
+    
+    <% if @micropost.dislikes.find_by(user_id: current_user.id).nil? %>
+        <%= render "dislikes/dislike" %>
+    <% else %>
+        <%= render "dislikes/undislike" %>
+    <% end %>
+<% else %>
+    <%= button_tag(type: 'submit', class: "btn like btn-primary") do %>
+        <span class="glyphicon glyphicon-thumbs-up"><%= @micropost.likes.count %></span> Like
+    <% end %>
+    <%= button_tag(type: 'submit', class: "btn dislike btn-primary") do %>
+        <span class="glyphicon glyphicon-thumbs-down"><%= @micropost.dislikes.count %></span> Dislike
+    <% end %>
+<% end %>

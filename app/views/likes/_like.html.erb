@@ -1,0 +1,9 @@
+ <%= form_for ([@micropost, @micropost.likes.build]) do |f| %>
+    <%= button_tag(type: 'submit', class: "btn like btn-primary") do %>
+      <span class="glyphicon glyphicon-thumbs-up"><%= @micropost.likes.count %></span> Like
+      <% end %>
+  <% end %>
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<span class="vote"> </span>

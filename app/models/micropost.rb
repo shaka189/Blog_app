@@ -1,12 +1,13 @@
 class Micropost < ApplicationRecord
   belongs_to :user
   has_many :comments
-  has_many :upvotes
   default_scope -> { order(created_at: :desc) }
   mount_uploader :picture, PictureUploader
   validates :user_id, presence: true
   validates :content, presence: true, length: { maximum: 140 }
   validate  :picture_size
+  has_many :likes, dependent: :destroy
+  has_many :dislikes, dependent: :destroy
 
   def score
     upvotes.count
