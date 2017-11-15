@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower  
   has_many :comments, dependent: :destroy  
   has_many :upvotes, dependent: :destroy
+  has_one :like
+  has_one :dislike
 
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
@@ -72,18 +74,5 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
 
-  # Follows a user.
-  def vote(post)
-    voting << post
-  end
-
-  # Unfollows a user.
-  def unvote(post)
-    voting.delete(post)
-  end
-
-  # Returns true if the current user is following the other user.
-  def voting?(post)
-    voting.include?(post)
-  end
+  
 end
